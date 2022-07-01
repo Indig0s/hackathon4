@@ -20,7 +20,7 @@ function Flights({direct}) {
     const response = await fetch(url);
     const data = await response.json();
     setRestults(data.data)
-    console.log(results)
+    console.log(data)
     }
     const loadMore = () => {
         window.scrollTo({
@@ -38,7 +38,7 @@ useEffect(()=>{
 
     return (
         <div className="list" >
-            {results.length == 0 && <h2>No flights found!</h2>}
+            {results == 0 && <h2 className="noFlights">No flights found!</h2>}
             {results && results.map((flight) => (
                 flight.availability.seats > 0 &&
                 (<Flight 

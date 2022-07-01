@@ -19,15 +19,15 @@ function Dropdown ({onChange1, onChange2}) {
     return (
         <div className="Dropdown">
           <Select
-            options={destinationCityData}
-            onChange={onChange1}
-            // onChange={opt => setDestinationCity(opt.value, opt.City)}
-          />
-          <Select
             options={originCityData}
             onChange={onChange2}
 
             // onChange={opt => setOriginCity(opt.value, opt.City)}
+          />
+           <Select
+            options={destinationCityData}
+            onChange={onChange1}
+            // onChange={opt => setDestinationCity(opt.value, opt.City)}
           />
         </div>
     );
