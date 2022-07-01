@@ -22,7 +22,7 @@ function Flight({stops, id, flyFrom, flyTo, cityFrom, cityTo, countryFromCode, c
                 <div className="flight__text_right">Airline: {airlines}</div>
             </div>
             <div className="flight__text">
-                <div className="flight__text_left">Availibility: {availibility} Number of stops: {stops -1}</div>
+                <div className="flight__text_left">Availibility: {availibility} Number of transits: {stops -1}</div>
                 <div className="flight__text_right">Price EUR {price}</div>
             </div>
         </div>

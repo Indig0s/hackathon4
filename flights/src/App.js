@@ -50,22 +50,25 @@ function App() {
                 </ul>
             </div>
         </div>
-        <span>From: </span>
-        <SearchBar onChange={(e) => setFrom(e.target.value)} />
-        <span>To: </span>
-        <SearchBar onChange={(e) => setTo(e.target.value)} />
+        <div className="site">
+          <div className="searchBarDiv">
+            <span className="selection">From: </span>
+            <SearchBar onChange={(e) => setFrom(e.target.value)} />
+            <span className="selection">To: </span>
+            <SearchBar onChange={(e) => setTo(e.target.value)} />
+            </div>
+            <Dropdown className='dropdown'
+              onChange1={(opt) => setCodeTo(opt.value)}
+              onChange2={(opt) => setCodeFrom(opt.value)}
+            />
 
-        <Dropdown
-          onChange1={(opt) => setCodeTo(opt.value)}
-          onChange2={(opt) => setCodeFrom(opt.value)}
-        />
-
-        <Link to={`/search/${codeFrom}/${codeTo}`}>
-          <Button title={"Search"} onClick={() => setCodes()} />
-        </Link>
-        <Routes>
-          <Route path="/search/:from/:to" element={<Flights />} />
-        </Routes>
+            <Link to={`/search/${codeFrom}/${codeTo}`}>
+              <Button title={"Search"} onClick={() => setCodes()} />
+            </Link>
+            <Routes>
+              <Route path="/search/:from/:to" element={<Flights />} />
+            </Routes>
+          </div>
       </BrowserRouter>
     </div>
   );
