@@ -26,29 +26,31 @@ function App() {
     setCodeTo(data.locations[0].id);
   };
 
-  // useEffect(() => {
-  //   getCodeFrom(from.toLowerCase());
-  // }, [from]);
+  useEffect(() => {
+    getCodeFrom(from.toLowerCase());
+  }, [from]);
 
-  // useEffect(() => {
-  //   getCodeTo(to.toLowerCase());
-  // }, [to]);
+  useEffect(() => {
+    getCodeTo(to.toLowerCase());
+  }, [to]);
 
-  const setCodes = async () => {
-    await getCodeTo(to.toLowerCase());
-    await getCodeFrom(from.toLowerCase());
-  };
+  // const setCodes = async () => {
+  //   await getCodeTo(to.toLowerCase());
+  //   await getCodeFrom(from.toLowerCase());
+  // };
 
   return (
     <div className="main">
       <BrowserRouter>
         <div id="nav-wrap">
-          <div id="scroller-anchor"></div> 
+          <div id="scroller-anchor"></div>
           <div id="nav">
-                <ul className="clearfix">
-                <Link className='nav-btn active' to='/'>Home</Link>
-                </ul>
-            </div>
+            <ul className="clearfix">
+              <Link className="nav-btn active" to="/">
+                Home
+              </Link>
+            </ul>
+          </div>
         </div>
         <span>From: </span>
         <SearchBar onChange={(e) => setFrom(e.target.value)} />
@@ -61,7 +63,7 @@ function App() {
         />
 
         <Link to={`/search/${codeFrom}/${codeTo}`}>
-          <Button title={"Search"} onClick={() => setCodes()} />
+          <Button title={"Search"} />
         </Link>
         <Routes>
           <Route path="/search/:from/:to" element={<Flights />} />
