@@ -7,6 +7,7 @@ import Flight from "./Flight";
 function Flights({direct}) {
     const [results, setRestults] = useState([]);
     const [offset, setOffset] = useState(0);
+    const [searchId, setSearchId] = useState(null);
     const params = useParams();
     var url = `https://api.skypicker.com/flights?fly_from=${params.from}&fly_to=${params.to}&partner=data4youcbp202106&offset=${offset}&limit=5`;
     
@@ -20,7 +21,8 @@ function Flights({direct}) {
     const response = await fetch(url);
     const data = await response.json();
     setRestults(data.data)
-    console.log(data)
+    setSearchId(data.search_id)
+    console.log(results)
     }
     const loadMore = () => {
         window.scrollTo({
@@ -34,11 +36,23 @@ function Flights({direct}) {
 
 useEffect(()=>{
     fetchData()
-},[params, offset])
+},[url])
 
     return (
         <div className="list" >
-            {results == 0 && <h2 className="noFlights">No flights found!</h2>}
+            {searchId == null && <div className="loading">
+<div className="rectangle_1"></div>
+<div className="rectangle_2"></div>
+<div className="rectangle_3"></div>
+<div className="rectangle_4"></div>
+<div className="rectangle_5"></div>
+<div className="rectangle_6"></div>
+<div className="rectangle_7"></div>
+<div className="rectangle_8"></div>
+<div className="rectangle_9"></div>
+<div className="rectangle_10"></div>
+</div>}
+            {results.length == 0 && searchId != null && <div className="noFlights"><h2>No flights found!</h2></div>}
             {results && results.map((flight) => (
                 flight.availability.seats > 0 &&
                 (<Flight 

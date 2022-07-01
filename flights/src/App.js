@@ -67,7 +67,7 @@ function App() {
             onChange1={(opt) => setCodeTo(opt.value)}
             onChange2={(opt) => setCodeFrom(opt.value)}
           />
-          <label>Direct flights only</label>
+          <label className="direct">Direct flights only</label>
           <CheckBox check={checked} handleChange={() => setChecked(!checked)} />
           <Link to={`/search/${codeFrom}/${codeTo}`}>
             <Button title={"Search"} />
