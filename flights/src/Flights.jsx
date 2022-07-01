@@ -7,6 +7,7 @@ import Flight from "./Flight";
 function Flights({direct}) {
     const [results, setRestults] = useState([]);
     const [offset, setOffset] = useState(0);
+    const [searchId, setSearchId] = useState(null);
     const params = useParams();
     var url = `https://api.skypicker.com/flights?fly_from=${params.from}&fly_to=${params.to}&partner=data4youcbp202106&offset=${offset}&limit=5`;
     
@@ -20,6 +21,7 @@ function Flights({direct}) {
     const response = await fetch(url);
     const data = await response.json();
     setRestults(data.data)
+    setSearchId(data.search_id)
     console.log(results)
     }
     const loadMore = () => {
@@ -38,7 +40,8 @@ useEffect(()=>{
 
     return (
         <div className="list" >
-            {results.length == 0 && <h2>No flights found!</h2>}
+            {searchId == null && <h2>Loading...</h2>}
+            {results.length == 0 && searchId != null && <h2>No flights found!</h2>}
             {results && results.map((flight) => (
                 flight.availability.seats > 0 &&
                 (<Flight 
