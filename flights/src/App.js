@@ -6,12 +6,15 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
 import Flights from "./Flights";
+import CheckBox from "./CheckBox";
 
 function App() {
   const [from, setFrom] = useState("");
   const [codeFrom, setCodeFrom] = useState("");
   const [to, setTo] = useState("");
   const [codeTo, setCodeTo] = useState("");
+
+  const [checked, setChecked] = useState(false);
 
   const getCodeFrom = async (query) => {
     const url = `https://api.skypicker.com/locations?type=general&key=city.name&value=${query}`;
@@ -64,12 +67,15 @@ function App() {
             onChange1={(opt) => setCodeTo(opt.value)}
             onChange2={(opt) => setCodeFrom(opt.value)}
           />
-
+          <CheckBox check={checked} handleChange={() => setChecked(!checked)} />
           <Link to={`/search/${codeFrom}/${codeTo}`}>
             <Button title={"Search"} />
           </Link>
           <Routes>
-            <Route path="/search/:from/:to" element={<Flights />} />
+            <Route
+              path="/search/:from/:to"
+              element={<Flights direct={checked} />}
+            />
           </Routes>
         </div>
       </BrowserRouter>
