@@ -1,7 +1,7 @@
 function Button({title, onClick}) {
   return (
     <div className="wrap">
-      <button class="button" onClick={onClick}>{title}</button>
+      <button className="button" onClick={onClick}>{title}</button>
     </div>
   )
 }

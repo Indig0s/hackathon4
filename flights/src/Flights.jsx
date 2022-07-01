@@ -4,11 +4,18 @@ import { useParams } from "react-router-dom";
 import Button from "./Button";
 import Flight from "./Flight";
 
-function Flights() {
+function Flights({direct}) {
     const [results, setRestults] = useState([]);
     const [offset, setOffset] = useState(0);
     const params = useParams();
-    const url = `https://api.skypicker.com/flights?fly_from=${params.from}&fly_to=${params.to}&partner=data4youcbp202106&offset=${offset}&limit=5`;
+    var url = `https://api.skypicker.com/flights?fly_from=${params.from}&fly_to=${params.to}&partner=data4youcbp202106&offset=${offset}&limit=5`;
+    
+    if (direct == true) {
+        url = `https://api.skypicker.com/flights?fly_from=${params.from}&fly_to=${params.to}&partner=data4youcbp202106&offset=${offset}&limit=5&max_stopovers=0`
+    }
+
+
+    
     const fetchData = async () => {
     const response = await fetch(url);
     const data = await response.json();
