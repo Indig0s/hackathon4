@@ -42,6 +42,14 @@ function App() {
   return (
     <div className="main">
       <BrowserRouter>
+        <div id="nav-wrap">
+          <div id="scroller-anchor"></div> 
+          <div id="nav">
+                <ul className="clearfix">
+                <Link className='nav-btn active' to='/'>Home</Link>
+                </ul>
+            </div>
+        </div>
         <span>From: </span>
         <SearchBar onChange={(e) => setFrom(e.target.value)} />
         <span>To: </span>
