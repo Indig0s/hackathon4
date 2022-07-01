@@ -1,6 +1,8 @@
 function Button({title, onClick}) {
   return (
-    <button className="button" onClick={onClick}>{title}</button>
+    <div className="wrap">
+      <button class="button" onClick={onClick}>{title}</button>
+    </div>
   )
 }
 
